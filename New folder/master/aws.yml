@@ -1,0 +1,40 @@
+- hosts: localhost
+  vars_files:
+          secret.yml
+
+  tasks: 
+         - name: "Creating Master Node"
+           ec2:
+                 region: ap-south-1
+                 aws_access_key: "{{ access_key }}"
+                 aws_secret_key: "{{ secret_key }}"
+                 vpc_subnet_id: subnet-0288bbf00ed3128d7
+                 count: 1
+                 state: present
+                 instance_type: t2.micro
+                 key_name: redhat-key
+                 assign_public_ip: yes
+                 group_id: sg-0612a79a1fdb041ff
+                 image: ami-08f63db601b82ff5f
+                 instance_tags: 
+                     name: master
+           
+                  
+                     #         - name: "Creating slave node"
+                     # ec2:
+                     #region: ap-south-1
+                     #aws_access_key: "{{ access_key }}"
+                     #aws_secret_key: "{{ secret_key }}"
+                     #vpc_subnet_id: subnet-0288bbf00ed3128d7
+                     #count: 2
+                     #state: present
+                     #instance_type: t2.micro
+                     #  key_name: cloud-key
+                     #   assign_public_ip: yes
+                     #   group_id: sg-0612a79a1fdb041ff
+                     #     image: ami-08f63db601b82ff5f
+                     #   instance_tags:
+                     # name: slave
+                
+           
+

@@ -1,0 +1,6 @@
+- hosts: tag_name_master
+  tasks:
+        - name: Install httpd software
+          package:
+                name: httpd
+                state: present
